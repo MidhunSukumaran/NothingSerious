@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>BALL IN A BOX</title>
+
+<style type="text/css">
+#heading { top:50px; left:370px;  font:normal 36px  "Times New Roman"; text-shadow: 1px 2px 3px  #bbb; color:#1abaca;position:relative;}    
+#rect {
+    top:100px;
+    left:300px;
+    position: relative; 
+}
+#button {
+    top:100px;
+    left:500px;
+    position:relative; 
+}
+#button1{
+font:normal 18px  "Times New Roman"; text-shadow:1px 2px 3px  #bbb; color:#1abaca;
+}
+</style>
+<body>
+<div id="heading">Bouncing Ball in a Box</div>
+<div id="rect">
+<canvas id="rectangle" width="500" height="200" style="border:2px solid #b3e7d2;" >
+</canvas>
+</div>
+<div id="button">
+<button id="startbutton" alt="Start Bouncing"><div id="button1">Start</div></button>
+<button id="stopbutton" alt="Stop Bouncing"><div id="button1">Stop</div></button>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+var ch_x= 5;
+var ch_y=5;
+var y=100;
+var x=250;
+var intvl;
+var already_started = false;
+var rectangle=document.getElementById("rectangle");
+function draw(){    
+	if( x<15 || x>480)
+		ch_x=-ch_x;
+	if( y<15 || y>180)
+		ch_y=-ch_y; 
+	context= rectangle.getContext('2d');
+	context.clearRect(0,0,500,200);
+	context.fillStyle="grey";
+	context.fillRect(0,0,500,200);
+	context.beginPath();
+	context.fillStyle="yellow";
+	context.arc(x,y,20,0,Math.PI*2,true);
+	context.closePath();
+	context.fill();
+	x+=ch_x;
+	y+=ch_y;
+}
+draw();
+$("#startbutton").click(function cont(){
+	draw();
+	if(already_started == false){
+		intvl = setInterval(cont,20);
+		already_started = true; 
+	}
+});
+$("#stopbutton").click(function(){
+	window.clearInterval(intvl);
+	already_started = false;
+});
+</script> 
+
+</body>
+</html>
