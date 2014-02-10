@@ -19,6 +19,6 @@ while $i > 0 do
    $sum += ( ary[$i].to_i * (( ( $top - $i  ) % 2) * 3 + ((  $top - $i + 1) % 2) * 1 )) 
    $i = $i - 1 
 end
-$reminder = 10 - ($sum % 10)  
+$reminder = (10 - ($sum % 10) ) % 10   
 $output = ( $number *  10 ) + $reminder
 puts("The Complete ISBN13 is : #$output  ")
